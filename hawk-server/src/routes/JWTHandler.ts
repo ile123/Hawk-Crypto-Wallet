@@ -1,15 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import * as dotenv from 'dotenv';
-
-dotenv.config({ path: "../.env" });
-
-const SECRET = process.env.SECRET || "";
+import { config } from "../config/dotenv";
 
 export const signJwt = (user_id: string): string | false => {
   const expirationTime = "1h";
   try {
-    const token = jwt.sign({ sub: user_id }, SECRET || "", {
+    const token = jwt.sign({ sub: user_id }, config.JWT_SECRET || "", {
       expiresIn: expirationTime,
     });
     return token || false;

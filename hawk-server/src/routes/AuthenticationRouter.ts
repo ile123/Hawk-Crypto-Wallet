@@ -1,7 +1,6 @@
 import express, { Request, Response, Router } from "express";
 import { signJwt } from "./JWTHandler";
 import User from "../models/UserModel";
-import IUser from "../types/IUser";
 import bcrypt from "bcrypt";
 
 export const AuthenticationRouter = (): any => {

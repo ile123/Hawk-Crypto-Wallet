@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from "express";
 import { verifyJwt } from "./JWTHandler";
-import { sendRpcRequest } from "../src/helper";
+import { sendRpcRequest } from "../helper";
 
 export const WalletRouter = (): Router => {
     const walletRouter: Router = express.Router();

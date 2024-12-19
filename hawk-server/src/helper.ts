@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 import axios from "axios";
-import * as dotenv from "dotenv";
-
-dotenv.config({ path: "../.env" });
-
-const API_URL = process.env.API_URL || "";
-const USERNAME = process.env.USERNAME || "";
-const PASSWORD = process.env.PASSWORD || "";
+import { config } from "./config/dotenv";
 
 export const connectToDatabase = async (uri: string) => {
   try {
@@ -20,7 +14,7 @@ export const connectToDatabase = async (uri: string) => {
 export const sendRpcRequest = async (method: any, params: any[] = []) => {
   try {
     const response = await axios.post(
-      API_URL,
+      config.API_URL,
       {
         jsonrpc: "2.0",
         id: 1,
@@ -29,8 +23,8 @@ export const sendRpcRequest = async (method: any, params: any[] = []) => {
       },
       {
         auth: {
-          username: USERNAME,
-          password: PASSWORD,
+          username: config.USERNAME,
+          password: config.PASSWORD,
         },
       }
     );
